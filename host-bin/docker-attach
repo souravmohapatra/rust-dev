@@ -21,4 +21,4 @@ DST_DIR="/home/user/$(basename "$PROJECT_ROOT")"
 echo "Attaching to container: $CONTAINER_ID"
 
 docker exec -it $CONTAINER_ID \
-    /bin/bash -c "/bin/bash"
+    /usr/bin/zsh -c "/usr/bin/zsh"

@@ -11,7 +11,7 @@ RUN apt-get update && \
     libboost-system-dev libboost-program-options-dev git ninja-build clang \
     gcc-arm-none-eabi wget golang \
     python3-distutils python3-tabulate python3-pip cm-super dvipng \
-    vim neovim cscope ctags sudo
+    vim neovim cscope ctags sudo zsh
 
 RUN pip install matplotlib==3.5.1
 RUN pip install pandas==1.4.1
@@ -57,3 +57,10 @@ RUN git clone https://github.com/souravmohapatra/my-dotfiles.git
 # Configure
 RUN sed -i.bak -e '5,6d' ~/my-dotfiles/configurations/home/mohapatr/.bashrc
 RUN cp ~/my-dotfiles/configurations/home/mohapatr/.bashrc ~/.bashrc
+RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+RUN zsh
+
+# Install and configure rust
+RUN sudo apt install curl
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN source $HOME/.cargo/env
